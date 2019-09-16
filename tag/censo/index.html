@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-br" manifest="hipno.appc">
+<head>
+
+
+
+ 
+
+<title>Censo</title>
+<meta name="robots" content="index, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  minimum-scale=1.0"> 
+
+<meta charset="UTF-8">
+ 
+
+  <link rel="stylesheet" href="../../font/font-awesome/css/font-awesome.min.css">
+ <link rel="stylesheet" href="../../css/style.css" type="text/css">
+ <link rel="stylesheet" href="../../css/w3.css" type="text/css">
+ <script src="../../css/jquery.min.js"></script>
+ 
+<script type="text/javascript" src="grafico.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+.navbar {
+  overflow: hidden;
+  background: linear-gradient(to left, #fff000 50%, #00CCCC 100%);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+hr{
+  border: 1px solid;
+  }
+body, h1,h2,h3,h4,h5,h6 {font-family: "Arial", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0} body {
+    height: 100%;
+  }  }
+
+.open-button {
+  color: teal;
+  padding: 2px 2px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+ bottom: 35px;
+  right: 10px;
+  border-radius: 4px;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 100%;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width textarea */
+.form-container text {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 200px;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.footer2 {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background: linear-gradient(to left, #fff000 50%, #00CCCC 100%);
+   opacity: 0.8;
+   text-align: center;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 10px;
+  z-index: 99;
+  font-size: 25px;
+  border: none;
+  outline: none;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
+.fa-hand-o-right  {
+    display: inline-block;
+    position: relative;
+    -moz-animation: bounce 1s infinite linear;
+    -o-animation: bounce 1s infinite linear;
+    -webkit-animation: bounce 1s infinite linear;
+    animation: bounce 1s infinite linear;
+}
+
+@-webkit-keyframes bounce {
+    0% { left: 0; }
+    50% { left: -0.2em; }
+    70% { left: -0.3em; }
+    100% { left: 0; }
+}
+@-moz-keyframes bounce {
+    0% { left: 0; }
+    50% { left: -0.2em; }
+    70% { left: -0.3em; }
+    100% { left: 0; }
+}
+@-o-keyframes bounce {
+    0% { left: 0; }
+    50% { left: -0.2em; }
+    70% { left: -0.3em; }
+    100% { left: 0; }
+}
+@-ms-keyframes bounce {
+    0% { left: 0; }
+    50% { left: -0.2em; }
+    70% { left: -0.3em; }
+    100% { left: 0; }
+}
+@keyframes bounce {
+    0% { left: 0; }
+    50% { left: -0.2em; }
+    70% { left: -0.3em; }
+    100% { left: 0; }
+}
+.fa-hand-o-left{
+    display: inline-block;
+    position: relative;
+    -moz-animation: bounce 1s infinite linear;
+    -o-animation: bounce 1s infinite linear;
+    -webkit-animation: bounce 1s infinite linear;
+    animation: bounce 1s infinite linear;
+}
+
+@-webkit-keyframes bounce {
+    0% { left: 0; }
+    50% { left: -0.2em; }
+    70% { left: -0.3em; }
+    100% { left: 0; }
+}
+@-moz-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-o-keyframes bounce {
+    0% { left: 0; }
+    50% { left: -0.2em; }
+    70% { left: -0.3em; }
+    100% { left: 0; }
+}
+@-ms-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@keyframes bounce {
+    0% { left: 0; }
+    50% { left: -0.2em; }
+    70% { left: -0.3em; }
+    100% { left: 0; }
+}
+
+
+.fa-book{
+	display: inline-block;
+	-moz-animation: pulse 2s infinite linear;
+	-o-animation: pulse 2s infinite linear;
+	-webkit-animation: pulse 2s infinite linear;
+	animation: pulse 2s infinite linear;
+}
+
+@-webkit-keyframes pulse {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@-moz-keyframes pulse {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@-o-keyframes pulse {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@-ms-keyframes pulse {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@keyframes pulse {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+select {
+            padding: 5px 15px;
+            font-size: 1.2em;
+            margin: 0 5px;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin: 0 5px;
+            vertical-align: middle;
+            padding-top: 5px;
+        }
+
+        .formtxt {
+            width: 70px;
+            padding: 5px 0;
+            margin: 0 5px;
+            font-size: 1.2em;
+        }
+
+        button.passagem {
+            padding: 4px 25px;
+            vertical-align: bottom;
+            font-size: 1.1em;
+            margin: 0 5px;
+            background-color: slategray;
+            color: white;
+        }
+
+        div#prox-ant {
+            display: none;
+        }
+
+        button.prox-ant {
+            margin-top: 5px;
+            font-size: 1.2em;
+            padding: 5px 5px;
+        }
+
+        #aqui {
+            font-size: 1.3em;
+            padding-right: 0px;
+        }
+
+        #resultado {
+            font-size: 1.1em;
+            padding: 20px;
+        }
+        
+        aside#xref {
+            display: none;
+            min-height: 50vh;
+            width: 100%;
+            background-color: whitesmoke;
+            padding: 30px 15px;
+        }
+
+        button.ref {
+            margin: 7px 0;
+            background-color: slategray;
+            color: white;
+            padding: 5px;
+        }
+
+        #tsk {
+            font-size: 1.2em;
+            padding: 5px 0;
+            margin-top: 10px;
+        }
+
+        #obsTsk {
+            font-size: 0.7em;
+            text-align: center;
+        }
+
+#div_esquerda{
+  float: left;
+}
+
+#div_direita{
+  float: right;
+}
+.chart {
+  width: 100%; 
+  min-height: 450px;
+}
+.row {
+  margin:0 !important;
+}
+</style>
+</head><body onload="cite()"><button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></button>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+
+
+</script>
+
+<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left " style="width:170px; background: linear-gradient(to top, #ffff00 80%, #00ff00 100%);" id="mySidebar">
+<div class="w3-container w3-center">
+ <div class="centered">
+  <a href="../#" >
+    <img src="../../img/biblia.png" style="width:40%"></a>
+      </div>
+  </div> 
+  
+  <footer class="w3-content w3-padding-44 w3-center " style="font-size:20px;">
+    <a href="" target="_blank"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+   <a href="" target="_blank"> <i class="fa fa-instagram w3-hover-opacity"></i></a>
+    <a href="" target="_blank"><i class="fa fa-youtube w3-hover-opacity"></i></a>
+   <a href="" target="_blank"> <i class="fa fa-twitter w3-hover-opacity"></i></a>
+   <a href="" target="_blank"> <i class="fa fa-linkedin w3-hover-opacity"></i></a>
+    <a href="" target="_blank"><i class="fa fa-map-marker w3-hover-opacity"></i></a>  
+  <!-- End footer -->
+  </footer>
+  <hr>
+  <a href="../../" class="w3-bar-item w3-button" onclick="w3_close()"><i class="fa fa-book" aria-hidden="true"></i> BIBLIA</a>
+  <a href="#" class="w3-bar-item w3-button" onclick="w3_close()"><i class="fa fa-pie-chart" aria-hidden="true"></i> CENSO</a>
+   <a href="../curioso/" class="w3-bar-item w3-button" onclick="w3_close()"><i class="fa fa-thermometer-full" aria-hidden="true"></i> CURIOSIDADES</a>
+   <a href="../estudos/" class="w3-bar-item w3-button" onclick="w3_close()">  <i class="fa fa-graduation-cap" aria-hidden="true"></i> ESTUDOS</a>
+   <a href="../quiz/" class="w3-bar-item w3-button" onclick="w3_close()">  <i class="fa fa-star" aria-hidden="true"></i> QUIZ</a>
+
+	
+  
+<br><br><br><br><br><br><br><br>
+  
+    
+  
+</div>
+
+<section>
+
+<div class="navbar w3-opacity">
+  <button class="w3-button  w3-xlarge w3-hide-large" onclick="w3_open()"><i class="fa fa-bars" aria-hidden="true"></i></button>
+  <span>
+  
+</span>
+
+</div>
+
+
+<div class="w3-container" onclick="w3_close()">
+
+<div class="w3-padding-large" id="main">
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 " id="home">
+   <div></div>
+    
+<div class="container">
+
+
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+  ['Católicos romanos', 73.7],
+  ['Pentecostais/neopentecostais', 10.4],
+  ['Evangelico de Missão', 4.1],
+  ['Evangelico não determinado', 1.8],
+  ['Sem religião', 7.4],
+  ['Espíritas', 1.3],
+  ['Outras Religiões', 1],
+  ['Umbandistas e candomblecistas', 0.3]
+        ]);
+
+      var options = {'title':'Religiosidade no Brasil ano 2000 (senso IBGE)'};
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+       chart.draw(data, {width: 600, height: 400, is3D: true, title: 'Religiosidade no Brasil ano 2000 (senso IBGE)'});
+        
+       
+        
+         var data2 = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Católicos romanos', 65.0],
+  ['Pentecostais/neopentecostais', 13.4],
+  ['Evangelico de Missão', 4.1],
+  ['Evangelico não determinado', 4.9],
+  ['Sem religião', 8],
+  ['Espíritas', 2],
+  ['Outras Religiões', 2.7],
+  ['Umbandistas e candomblecistas', 0]
+]);
+
+
+ 
+
+  var options2 = {'title':'Religiosidade no Brasil ano 2010 (senso IBGE)'};
+   
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+  chart.draw(data2, {width: 600, height: 400, is3D: true, title: 'Religiosidade no Brasil ano 2010 (senso IBGE)'});
+  //chart.draw(data2, options2);
+  
+  
+  
+  
+  
+  var data3 = google.visualization.arrayToDataTable([
+          ['Year', 'Católicos', 'Pentecostais/Neo', 'Evangelico(Miss+ND', 'Sem religião', 'Espíritas+Candomblé+Umbanda', 'Outras Religiões'],
+          ['2000', 		 73.7				,10.4,     			 5.9				,7.4,     				 1.6,				            1],
+         
+          ['2010',       65.0		        ,13.4,     			 9				,8,     				 2	,			            2.7]
+        ]);
+
+        var options3 = {
+          title: 'Linha do Tempo Religião no Brasil',
+          curveType: 'function',
+		  width: 600, height: 400,
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data3, options3);
+      }
+      
+	  
+	  $(window).resize(function(){
+  donutchart();
+  chart_div();
+   curve_chart();
+});
+    </script>
+  </head>
+  <body>
+    <div class="row">
+  
+  <div class="col-md-4 col-md-offset-4">
+    <hr />
+  </div>
+  <div class="clearfix"></div>
+  <div class="col-md-4">
+    <div id="donutchart" class="chart"></div>
+  </div>
+  <div class="col-md-4">
+    <div id="chart_div" class="chart"></div>
+  </div>
+  <div class="col-md-4">
+    <div id="curve_chart" class="chart"></div>
+  </div>
+</div>
+
+
+    <div id="donutchart" ></div>
+    <div id="chart_div"></div>
+   
+    <div id="curve_chart"></div>
+  
+</body>
+    
+    
+<script src="css/jquery.min.js"></script>
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+		
+
+<script>
+function move() {
+  var elem = document.getElementById("myBar");   
+  var width = 1;
+  var id = setInterval(frame, 1000);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+	  setTimeout('location.reload();', 2000);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+    }
+	 
+  }
+ 
+}
+</script>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 15000);    
+}
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>    
+    
+  
+</div></div></section>
+ 
+ <script src="css/jquery-3.3.1.js"></script>
+ 
+<!-- END PAGE CONTENT -->
+
+<link rel="sortcut icon" href="img/hipnose-clinica.jpg" type="image/jpg">;
+
+
+<script type="text/javascript" src="js/script.js"></script>
+<script src="css/jquery.min.js"></script>
+<ul class="">
+   <li>
+    <span><i class="fa fa-lightbulb-o" aria-hidden="true"></i></span>
+   
+   </li>
+  </ul>
+  
+<script>
+function rateApp() {
+            android.rateApp();
+       }
+	   
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+$(document).ready(function(){
+$('ul').click(function(){
+    $('ul').toggleClass('active')
+    $('div').toggleClass('w3-black')
+   })
+   $('ul2').click(function(){
+    $('ul2').toggleClass('active')
+    $('div').toggleClass('w3-blue')
+   })
+ 
+  
+$("xx").click(function(){
+    $("h1, h3, p").toggleClass("w3-xlarge");
+  });
+$('luz').click(function(){
+   
+    $('div').toggleClass('w3-black')
+   })
+  $("verde").click(function(){
+   
+    $("div").toggleClass("w3-teal");
+  });
+  $("azul").click(function(){
+   
+    $("div").toggleClass("linear-gradient(to bottom, #3399ff 0%, #99ccff 100%);");
+  });
+});
+</script>
+  <script>
+/* Get the element you want displayed in fullscreen */ 
+var elem = document.documentElement;
+
+/* Function to open fullscreen mode */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+/* Function to close fullscreen mode */
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+
+// Events
+var output = document.getElementById("myP");
+document.addEventListener("fullscreenchange", function() {
+  output.innerHTML = "fullscreenchange event fired!";
+});
+document.addEventListener("mozfullscreenchange", function() {
+  output.innerHTML = "mozfullscreenchange event fired!";
+});
+document.addEventListener("webkitfullscreenchange", function() {
+  output.innerHTML = "webkitfullscreenchange event fired!";
+});
+document.addEventListener("msfullscreenchange", function() {
+  output.innerHTML = "msfullscreenchange event fired!";
+});
+</script>
+  
+<div class="footer2">
+
+   <footer class="w3-content w3-padding-44 w3-center " style="font-size:25px;">
+   <span onclick="openFullscreen();"><i class="fa fa-arrows-alt"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="" target="_blank"><i class="fa fa-user w3-hover-opacity"></i></a>&nbsp;&nbsp;
+    <a href="" target="_blank"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>&nbsp;&nbsp;
+   <a href="" target="_blank"> <i class="fa fa-instagram w3-hover-opacity"></i></a>&nbsp;&nbsp;
+    <a href="" target="_blank"><i class="fa fa-youtube w3-hover-opacity"></i></a>&nbsp;&nbsp;
+   <a href="" target="_blank"> <i class="fa fa-twitter w3-hover-opacity"></i></a>&nbsp;&nbsp;
+   <a href="" target="_blank"> <i class="fa fa-linkedin w3-hover-opacity"></i></a>&nbsp;&nbsp;
+    <a href="2" target="_blank"><i class="fa fa-map-marker w3-hover-opacity"></i></a>  
+   
+  <!-- End footer -->
+  </footer>
+</div>
+
+
+
+
+</body></html>
