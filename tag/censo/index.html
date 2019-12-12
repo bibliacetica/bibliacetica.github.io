@@ -430,6 +430,24 @@ function topFunction() {
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
+	  
+	       var data2 = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+  ['Católicos', 122366692],
+  ['Evangelicos', 13189284],
+  ['Sem religião', 7542246],
+  ['Espíritas', 2292819]
+  
+        ]);
+
+      var options3 = {'title':'Religiosidade no Brasil ano 1991 (censo IBGE)'};
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('donutchart2'));
+       chart2.draw(data2, {width: 600, height: 400, is3D: true, title: 'Religiosidade no Brasil ano 1991 (censo IBGE)'});
+        
+		
+		
+	  
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
   ['Católicos romanos', 73.7],
@@ -473,30 +491,9 @@ function topFunction() {
   //chart.draw(data2, options2);
   
   
-  
-  
-  
-  var data3 = google.visualization.arrayToDataTable([
-          ['Year', 'Católicos', 'Pentecostais/Neo', 'Evangelico(Miss+ND', 'Sem religião', 'Espíritas+Candomblé+Umbanda', 'Outras Religiões'],
-          ['2000', 		 73.7				,10.4,     			 5.9				,7.4,     				 1.6,				            1],
-         
-          ['2010',       65.0		        ,13.4,     			 9				,8,     				 2	,			            2.7]
-        ]);
-
-        var options3 = {
-          title: 'Linha do Tempo Religião no Brasil',
-          curveType: 'function',
-		  width: 600, height: 400,
-          legend: { position: 'bottom' }
-        };
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data3, options3);
-		
-		
-		 var data4 = google.visualization.arrayToDataTable([
-          ['Year', 'Católicos', 'Evangelicos', 'Espirita', 'Sem religião'],
-          ['1872', 		 9.902.712	, 0     ,  0     0],
+  /*
+  ['Year', 'Católicos', 'Evangelicos', 'Espirita', 'Sem religião'],
+          ['1872', 		 9.902.712	, 0     ,  0 ,    0],
 		  ['1890', 		14.179.615,	143.743,	0	,7.257],
 		  ['1940', 		 39.177.880,	1.074.857,	463.400,	189.304],
 		  ['1950', 		 48.558.854,	1.741.430,	824.553,	412.042],
@@ -506,17 +503,61 @@ function topFunction() {
 		  ['1991', 		 122.366.692,	13.189.284,	2.292.819,	7.542.246],
 		  ['2000', 		 124.980.132,	26.184.941,	2.262.401,	12.876.356],
           ['2010',       123.280.172,	42.275.440,	3.848.876,	15.335.510]
+  */
+  var data3 = google.visualization.arrayToDataTable([
+          ['Year', 'Católicos', 'Evangelicos', 'Espirita', 'Sem religião'],
+		   ['1872', 		 9902712	, 0     ,  0 ,    0],
+		  ['1890', 		14179615,	143743,	0	,7257],
+		  ['1940', 		 39177880,	1074857,	463400,	189304],
+		  ['1950', 		 48558854,	1741430,	824.553,	412042],
+		  ['1960', 		 65329520,	2824775,	977.561,	388126],
+		  ['1970', 		 85472022,	4814728,	1178293,	715056],
+		  ['1980', 		105861113,	7885846,	1538230,	2252782],
+		  ['1991', 		 122366692,	13189284,	2292819,	7542246],
+		  ['2000', 		 124980132,	26184941,	2262401,	12876356],
+          ['2010',       123280172,	42275440,	3848876,	15335510]
         ]);
 
-        var options4 = {
-          title: 'Linha do Tempo(Série historica quantidade aproximada)',
-          curveType: 'function',
-		  width: 600, height: 400,
-          legend: { position: 'bottom' }
-        };
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+        var options3 = {
+        hAxis: {
+          title: 'TEMPO',
+          textStyle: {
+            color: '#01579b',
+            fontSize: 20,
+            fontName: 'Arial',
+            bold: true,
+            italic: true
+          },
+          titleTextStyle: {
+            color: '#01579b',
+            fontSize: 16,
+            fontName: 'Arial',
+            bold: false,
+            italic: true
+          }
+        },
+        vAxis: {
+          title: 'QUANTIDADE',
+          textStyle: {
+            color: '#1a237e',
+            fontSize: 24,
+            bold: true
+          },
+          titleTextStyle: {
+            color: '#1a237e',
+            fontSize: 24,
+            bold: true
+          }
+        },
+        colors: ['#0000FF', '#FFD700','#9400D3','#00FF7F']
+      };
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+		
 
-        chart.draw(data4, options4);
+        chart.draw(data3, options3);
+		
+		
+		
 		
 		
       }
@@ -524,8 +565,10 @@ function topFunction() {
 	  
 	  $(window).resize(function(){
   donutchart();
+  donutchart2();
   chart_div();
    curve_chart();
+  //curve_chart2();
 });
     </script>
   </head>
@@ -537,6 +580,9 @@ function topFunction() {
   </div>
   <div class="clearfix"></div>
   <div class="col-md-4">
+    <div id="donutchart2" class="chart"></div>
+  </div>
+  <div class="col-md-4">
     <div id="donutchart" class="chart"></div>
   </div>
   <div class="col-md-4">
@@ -545,16 +591,15 @@ function topFunction() {
   <div class="col-md-4">
     <div id="curve_chart" class="chart"></div>
   </div>
-  <div class="col-md-4">
-    <div id="curve_chart2" class="chart"></div>
-  </div>
+ 
 </div>
 
-
+ <div id="donutchart2" ></div>
     <div id="donutchart" ></div>
     <div id="chart_div"></div>
    
     <div id="curve_chart"></div>
+
   
 </body>
     
