@@ -492,6 +492,33 @@ function topFunction() {
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
         chart.draw(data3, options3);
+		
+		
+		 var data4 = google.visualization.arrayToDataTable([
+          ['Year', 'Católicos', 'Evangelicos', 'Espirita', 'Sem religião'],
+          ['1872', 		 9.902.712	, 0     ,  0     0],
+		  ['1890', 		14.179.615,	143.743,	0	,7.257],
+		  ['1940', 		 39.177.880,	1.074.857,	463.400,	189.304],
+		  ['1950', 		 48.558.854,	1.741.430,	824.553,	412.042],
+		  ['1960', 		 65.329.520,	2.824.775,	977.561,	388.126],
+		  ['1970', 		 85.472.022,	4.814.728,	1.178.293,	715.056],
+		  ['1980', 		105.861.113,	7.885.846,	1.538.230,	2.252.782],
+		  ['1991', 		 122.366.692,	13.189.284,	2.292.819,	7.542.246],
+		  ['2000', 		 124.980.132,	26.184.941,	2.262.401,	12.876.356],
+          ['2010',       123.280.172,	42.275.440,	3.848.876,	15.335.510]
+        ]);
+
+        var options4 = {
+          title: 'Linha do Tempo(Série historica quantidade aproximada)',
+          curveType: 'function',
+		  width: 600, height: 400,
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+
+        chart.draw(data4, options4);
+		
+		
       }
       
 	  
@@ -517,6 +544,9 @@ function topFunction() {
   </div>
   <div class="col-md-4">
     <div id="curve_chart" class="chart"></div>
+  </div>
+  <div class="col-md-4">
+    <div id="curve_chart2" class="chart"></div>
   </div>
 </div>
 
