@@ -266,16 +266,13 @@ function topFunction() {
 
 
 
-<div class="card">
-  <div class="container">
+
     <h4><b>Antigo Testamento - CRUELDADE/VIOLÊNCIA </b></h4> 
     <canvas id="pieChart" width="20%"></canvas>
-	</div>
-  <div class="container">
+	
     <h4><b>Novo Testamento - CRUELDADE/VIOLÊNCIA</b></h4> 
 <canvas id="pieChart2" width="20%"></canvas>
-  </div>
-</div>
+ 
 
 
 
@@ -1601,17 +1598,17 @@ canvasP.onclick = function(e) {
       // add rests ...
    }
 }
-options = {
-    scales: {
-        yAxes: [{
-            ticks: {
-                max: 50,
-                min: 0,
-                stepSize: 1
-            }
-        }]
-    }
-};
+//options = {
+  //  scales: {
+  //      yAxes: [{
+  //          ticks: {
+  //              max: 50,
+  //              min: 0,
+  //              stepSize: 1
+  //          }
+ //       }]
+//    }
+//};
 var canvasP2 = document.getElementById("pieChart2");
 var ctxP2 = canvasP2.getContext('2d');
 var myPieChart2 = new Chart(ctxP2, {
@@ -1623,8 +1620,7 @@ var myPieChart2 = new Chart(ctxP2, {
          backgroundColor: ["#64B5F6", "#FFD54F", "#2196F3", "#FFC107"],
          hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65"]
       }]
-   },
-   options
+   }
 });
 
 canvasP2.onclick = function(e) {
