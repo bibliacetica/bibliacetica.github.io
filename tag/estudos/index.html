@@ -1601,7 +1601,17 @@ canvasP.onclick = function(e) {
       // add rests ...
    }
 }
-
+options = {
+    scales: {
+        yAxes: [{
+            ticks: {
+                max: 50,
+                min: 0,
+                stepSize: 1
+            }
+        }]
+    }
+};
 var canvasP2 = document.getElementById("pieChart2");
 var ctxP2 = canvasP2.getContext('2d');
 var myPieChart2 = new Chart(ctxP2, {
@@ -1614,9 +1624,7 @@ var myPieChart2 = new Chart(ctxP2, {
          hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65"]
       }]
    },
-   options: {
-      
-   }
+   options
 });
 
 canvasP2.onclick = function(e) {
