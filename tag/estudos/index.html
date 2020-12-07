@@ -1573,7 +1573,15 @@ var myPieChart = new Chart(ctxP, {
       legend: {
          display: false,
          position: "right"
-      }
+      },
+	   pan: {
+      enabled: true,
+      mode: 'xy',
+    },
+    zoom: {
+      enabled: true,
+      mode: 'xy', // or 'x' for "drag" version
+    },
    }
 });
 
