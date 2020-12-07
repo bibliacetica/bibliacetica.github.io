@@ -279,7 +279,9 @@ function topFunction() {
   <div class="w3-panel w3-card-4"><h4><b>Novo Testamento - CRUELDADE/VIOLÊNCIA </b></h4> 
     <canvas id="pieChart2" width="20%"></canvas></div>
 </div>
-
+<div id="container" style="width: 75%;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+		<canvas id="canvas" style="display: block; width: 548px; height: 274px;" width="548" height="274" class="chartjs-render-monitor"></canvas>
+	</div>
 
 <!-- The Modal -->
 <div id="genesis" class="modal">
@@ -1644,9 +1646,10 @@ canvasP.onclick = function(e) {
 
 
 
+	
 		var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		var color = Chart.helpers.color;
-		var barChartData3 = {
+		var barChartData = {
 			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
 			datasets: [{
 				label: 'Dataset 1',
@@ -1681,10 +1684,10 @@ canvasP.onclick = function(e) {
 		};
 
 		window.onload = function() {
-			var ctx3 = document.getElementById('pieChart2').getContext('2d');
-			window.myBar = new Chart(ctx3, {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myBar = new Chart(ctx, {
 				type: 'bar',
-				data: barChartData3,
+				data: barChartData,
 				options: {
 					responsive: true,
 					legend: {
@@ -1699,32 +1702,65 @@ canvasP.onclick = function(e) {
 
 		};
 
-		
+		document.getElementById('randomizeData').addEventListener('click', function() {
+			var zero = Math.random() < 0.2 ? true : false;
+			barChartData.datasets.forEach(function(dataset) {
+				dataset.data = dataset.data.map(function() {
+					return zero ? 0.0 : randomScalingFactor();
+				});
+
+			});
+			window.myBar.update();
+		});
 
 		var colorNames = Object.keys(window.chartColors);
 		document.getElementById('addDataset').addEventListener('click', function() {
-			var colorName = colorNames[barChartData3.datasets.length % colorNames.length];
+			var colorName = colorNames[barChartData.datasets.length % colorNames.length];
 			var dsColor = window.chartColors[colorName];
 			var newDataset = {
-				label: 'Dataset ' + (barChartData3.datasets.length + 1),
+				label: 'Dataset ' + (barChartData.datasets.length + 1),
 				backgroundColor: color(dsColor).alpha(0.5).rgbString(),
 				borderColor: dsColor,
 				borderWidth: 1,
 				data: []
 			};
 
-			for (var index = 0; index < barChartData3.labels.length; ++index) {
+			for (var index = 0; index < barChartData.labels.length; ++index) {
 				newDataset.data.push(randomScalingFactor());
 			}
 
-			barChartData3.datasets.push(newDataset);
+			barChartData.datasets.push(newDataset);
 			window.myBar.update();
 		});
 
-		
-		
+		document.getElementById('addData').addEventListener('click', function() {
+			if (barChartData.datasets.length > 0) {
+				var month = MONTHS[barChartData.labels.length % MONTHS.length];
+				barChartData.labels.push(month);
 
-		
+				for (var index = 0; index < barChartData.datasets.length; ++index) {
+					// window.myBar.addData(randomScalingFactor(), index);
+					barChartData.datasets[index].data.push(randomScalingFactor());
+				}
+
+				window.myBar.update();
+			}
+		});
+
+		document.getElementById('removeDataset').addEventListener('click', function() {
+			barChartData.datasets.pop();
+			window.myBar.update();
+		});
+
+		document.getElementById('removeData').addEventListener('click', function() {
+			barChartData.labels.splice(-1, 1); // remove the label first
+
+			barChartData.datasets.forEach(function(dataset) {
+				dataset.data.pop();
+			});
+
+			window.myBar.update();
+		});
 	
 
 
